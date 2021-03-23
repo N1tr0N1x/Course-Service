@@ -15,7 +15,7 @@ public class Module {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private int id;
+    private long id;
 
     @Column(name = "name")
     private String name;
@@ -137,7 +137,7 @@ public class Module {
     public Module() {
     }
 
-    public Module(int id, String name, int credit, int coefficient, int vh_cours, int vh_td,
+    public Module(long id, String name, int credit, int coefficient, int vh_cours, int vh_td,
      int vh_tp , String email_ens_cours, String email_ens_td, String email_ens_tp){
         this.id = id;
         this.name = name;
