@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.client.RestTemplate;
 import javax.ws.rs.core.MediaType;
 import org.springframework.http.HttpHeaders;
@@ -35,6 +38,26 @@ public class CourseController {
     String json = new Gson().toJson(modules);
     RestTemplate restTemplate = new RestTemplate();
     return restTemplate.postForObject("http://localhost:8086/main/modindex/",json, String.class);
+}
+    @GetMapping(value = "/editpage/{id}")
+    @ResponseBody
+    public String EditPage(@PathVariable("id") int id){
+        Module mod= course.get(id);
+        String json = new Gson().toJson(mod);
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForObject("http://localhost:8086/main/modeditpage/",json,String.class);
+    }
+    @GetMapping(value = "/delete/{id}",method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteModule(@PathVariable("id") int id) {
+    course.delete(id);
+    List<Module> modules = course.listAll();
+    String json = new Gson().toJson(modules);
+    RestTemplate restTemplate = new RestTemplate();
+    return restTemplate.postForObject("http://localhost:8086/main/modindex/",json, String.class);
+}
+
+
 	/*HttpHeaders headers = new HttpHeaders();
     headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
     HttpEntity<String> entity = new HttpEntity<String>(headers);
@@ -53,6 +76,6 @@ public class CourseController {
         restTemplate.exchange("http://localhost:8086/main/modindex/",
                     HttpMethod.GET, null, new ParameterizedTypeReference<List<Module>>() {
             });*/
-    }
+    
     // standard constructor and getter/setter
 }
