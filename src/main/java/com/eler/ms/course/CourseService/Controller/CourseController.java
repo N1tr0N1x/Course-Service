@@ -47,7 +47,18 @@ public class CourseController {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForObject("http://localhost:8086/main/modeditpage/",json,String.class);
     }
-    @GetMapping(value = "/delete/{id}",method = RequestMethod.GET)
+
+
+    @GetMapping(value = "/ModuleIndex")
+    @ResponseBody
+    public String ShowModuleIndex() {
+    List<Module> modules = course.listAll();
+    String json = new Gson().toJson(modules);
+    RestTemplate restTemplate = new RestTemplate();
+    return restTemplate.postForObject("http://localhost:8086/main/modindex/",json, String.class);
+}
+
+    @GetMapping(value = "/delete/{id}")
     @ResponseBody
     public String deleteModule(@PathVariable("id") int id) {
     course.delete(id);
