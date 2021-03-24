@@ -21,62 +21,27 @@ public class CourseController {
     CourseService course;
 
     @RequestMapping(value = "/save", method = RequestMethod.POST,headers = "Accept=application/json")
-    @ResponseBody
-	public String saveModule(@RequestBody Module module) {
-	course.save(module);
-	List<Module> modules = course.listAll();
-    String json = new Gson().toJson(modules);
-    RestTemplate restTemplate = new RestTemplate();
-    return restTemplate.postForObject("http://localhost:8086/main/modindex/",json, String.class);
-}
-    @GetMapping(value = "/editpage/{id}")
-    @ResponseBody
-    public String EditPage(@PathVariable("id") int id){
-        Module mod= course.get(id);
-        String json = new Gson().toJson(mod);
-        RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForObject("http://localhost:8086/main/modeditpage/",json,String.class);
+	public void saveModule(@RequestBody Module module) {
+	    course.save(module);
     }
 
-
-    @GetMapping(value = "/ModuleIndex")
+    @GetMapping(value = "/getModule/{id}")
     @ResponseBody
-    public String ShowModuleIndex() {
-    List<Module> modules = course.listAll();
-    String json = new Gson().toJson(modules);
-    RestTemplate restTemplate = new RestTemplate();
-    return restTemplate.postForObject("http://localhost:8086/main/modindex/",json, String.class);
-}
+    public Module getModule(@PathVariable("id") int id){
+        return course.get(id);
+    }
+
+    @GetMapping(value = "/modules")
+    @ResponseBody
+    public String getAllModules() {
+        List<Module> modules = course.listAll();
+        String json = new Gson().toJson(modules);
+        return json;
+    }
 
     @GetMapping(value = "/delete/{id}")
     @ResponseBody
-    public String deleteModule(@PathVariable("id") int id) {
-    course.delete(id);
-    List<Module> modules = course.listAll();
-    String json = new Gson().toJson(modules);
-    RestTemplate restTemplate = new RestTemplate();
-    return restTemplate.postForObject("http://localhost:8086/main/modindex/",json, String.class);
-}
-
-
-	/*HttpHeaders headers = new HttpHeaders();
-    headers.setAccept(Arrays.asList(MediaType.APPLICATION_XML));
-    HttpEntity<String> entity = new HttpEntity<String>(headers);
-	
-	
-	HttpEntity<Object> requestEntity = new HttpEntity<Object>(modules,headers);
-    //ResponseEntity<Foo> response = restTemplate.postForObject("http://localhost:8086/main/modindex/",modules, List<Module>.class);
-    ResponseEntity<List<Module>> rateResponse = restTemplate.exchange("http://localhost:8086/main/modindex/", HttpMethod.POST, requestEntity,new ParameterizedTypeReference<List<Module>>() {});
-*/
-
-    /*ResponseEntity<Object[]> responseEntity =
-   restTemplate.getForEntity("http://localhost:8086/main/modindex/", Object[].class);*/
-   //RestTemplate restTemplate = new RestTemplate();
-   //return restTemplate.
-   /*ResponseEntity<List<Module>> modResponse =
-        restTemplate.exchange("http://localhost:8086/main/modindex/",
-                    HttpMethod.GET, null, new ParameterizedTypeReference<List<Module>>() {
-            });*/
-    
-    // standard constructor and getter/setter
+    public void deleteModule(@PathVariable("id") int id) {
+        course.delete(id);
+    }
 }

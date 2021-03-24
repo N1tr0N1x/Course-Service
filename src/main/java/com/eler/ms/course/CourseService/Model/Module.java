@@ -15,9 +15,9 @@ import javax.persistence.Table;
 public class Module {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idModule")
+    private long idModule;
 
     @Column(name = "name")
     private String name;
@@ -46,13 +46,7 @@ public class Module {
     @Column(name = "email_ens_tp")
     private String email_ens_tp;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
     public String getName() {
         return name;
     }
@@ -131,7 +125,7 @@ public class Module {
     public Module(long id, String name, int credit, int coefficient, int vh_cours, int vh_td,
      int vh_tp , String email_ens_cours, String email_ens_td, String email_ens_tp){
         super();
-        this.id = id;
+        this.idModule = id;
         this.name = name;
         this.credit = credit;
         this.coefficient = coefficient;
@@ -141,6 +135,14 @@ public class Module {
         this.email_ens_cours = email_ens_cours;
         this.email_ens_td = email_ens_td;
         this.email_ens_tp = email_ens_tp;
+    }
+
+    public long getIdModule() {
+        return idModule;
+    }
+
+    public void setIdModule(long idModule) {
+        this.idModule = idModule;
     }
 
     
