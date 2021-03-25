@@ -29,4 +29,16 @@ public class CourseService {
 	public void delete(long id) {
 		repo.deleteById(id);
 	}
+
+	public List<Module> getModulesByEmailCours(String email) {
+		return repo.findAllByEmailEnsCours(email);
+	}
+	
+	public List<Module> getModulesByEmailTd(String email) {
+		return repo.findAllByEmailEnsTd(email);
+	}
+	
+	public List<Module> getModulesByEmailTp(String email) {
+		return repo.findAllByEmailEnsTp(email);
+	}
 }

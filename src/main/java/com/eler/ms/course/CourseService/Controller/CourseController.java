@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,7 +21,8 @@ public class CourseController {
     @Autowired
     CourseService course;
 
-    @RequestMapping(value = "/save", method = RequestMethod.POST,headers = "Accept=application/json")
+    //@RequestMapping(value = "/save", method = RequestMethod.POST,headers = "Accept=application/json")
+    @PostMapping("/save")
 	public void saveModule(@RequestBody Module module) {
 	    course.save(module);
     }
@@ -43,5 +45,29 @@ public class CourseController {
     @ResponseBody
     public void deleteModule(@PathVariable("id") int id) {
         course.delete(id);
+    }
+
+    @GetMapping(value = "/modules/{email}/cours")
+    @ResponseBody
+    public String getModulesByEmailCours(@PathVariable("email") String email) {
+        List<Module> modules = course.getModulesByEmailCours(email);
+        String json = new Gson().toJson(modules);
+        return json;
+    }
+
+    @GetMapping(value = "/modules/{email}/td")
+    @ResponseBody
+    public String getModulesByEmailTd(@PathVariable("email") String email) {
+        List<Module> modules = course.getModulesByEmailTd(email);
+        String json = new Gson().toJson(modules);
+        return json;
+    }
+
+    @GetMapping(value = "/modules/{email}/tp")
+    @ResponseBody
+    public String getModulesByEmailTp(@PathVariable("email") String email) {
+        List<Module> modules = course.getModulesByEmailTp(email);
+        String json = new Gson().toJson(modules);
+        return json;
     }
 }

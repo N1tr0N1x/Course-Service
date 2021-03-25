@@ -28,25 +28,32 @@ public class Module {
     @Column(name = "coefficient")
     private int coefficient;
 
-    @Column(name = "vh_cours")
-    private int vh_cours;
+    @Column(name = "vhCours")
+    private int vhCours;
 
-    @Column(name = "vh_td")
-    private int vh_td;
+    @Column(name = "vhTd")
+    private int vhTd;
 
-    @Column(name = "vh_tp")
-    private int vh_tp;
+    @Column(name = "vhTp")
+    private int vhTp;
 
-    @Column(name = "email_ens_cours")
-    private String email_ens_cours;
+    @Column(name = "emailEnsCours")
+    private String emailEnsCours;
 
-    @Column(name = "email_ens_td")
-    private String email_ens_td;
+    @Column(name = "emailEnsTd")
+    private String emailEnsTd;
 
-    @Column(name = "email_ens_tp")
-    private String email_ens_tp;
+    @Column(name = "emailEnsTp")
+    private String emailEnsTp;
 
-    
+    public long getIdModule() {
+        return idModule;
+    }
+
+    public void setIdModule(long idModule) {
+        this.idModule = idModule;
+    }
+
     public String getName() {
         return name;
     }
@@ -62,88 +69,81 @@ public class Module {
     public void setCredit(int credit) {
         this.credit = credit;
     }
+
     public int getCoefficient() {
         return coefficient;
     }
 
     public void setCoefficient(int coefficient) {
         this.coefficient = coefficient;
-
-
-    }public int getVh_cours() {
-        return vh_cours;
     }
 
-    public void setVh_cours(int vh_cours) {
-        this.vh_cours = vh_cours;
-
-
-
-    }public int getVh_td() {
-        return vh_td;
+    public int getVhCours() {
+        return vhCours;
     }
 
-    public void setVh_td(int vh_td) {
-        this.vh_td = vh_td;
-
-
-    }public int getVh_tp() {
-        return vh_tp;
+    public void setVhCours(int vhCours) {
+        this.vhCours = vhCours;
     }
 
-    public void setVh_tp(int vh_tp) {
-        this.vh_tp = vh_tp;
+    public int getVhTd() {
+        return vhTd;
     }
 
-    public String getEmail_ens_cours() {
-        return email_ens_cours;
+    public void setVhTd(int vhTd) {
+        this.vhTd = vhTd;
     }
 
-    public void setEmail_ens_cours(String email_ens_cours) {
-        this.email_ens_cours = email_ens_cours;
+    public int getVhTp() {
+        return vhTp;
     }
 
-    public String getEmail_ens_td() {
-        return email_ens_td;
+    public void setVhTp(int vhTp) {
+        this.vhTp = vhTp;
     }
 
-    public void setEmail_ens_td(String email_ens_td) {
-        this.email_ens_td = email_ens_td;
-    }
-    public String getEmail_ens_tp() {
-        return email_ens_tp;
+    public String getEmailEnsCours() {
+        return emailEnsCours;
     }
 
-    public void setEmail_ens_tp(String email_ens_tp) {
-        this.email_ens_tp = email_ens_tp;
+    public void setEmailEnsCours(String emailEnsCours) {
+        this.emailEnsCours = emailEnsCours;
     }
 
+    public String getEmailEnsTd() {
+        return emailEnsTd;
+    }
+
+    public void setEmailEnsTd(String emailEnsTd) {
+        this.emailEnsTd = emailEnsTd;
+    }
+
+    public String getEmailEnsTp() {
+        return emailEnsTp;
+    }
+
+    public void setEmailEnsTp(String emailEnsTp) {
+        this.emailEnsTp = emailEnsTp;
+    }
+
+    public Module(long idModule, String name, int credit, int coefficient, int vhCours, int vhTd, int vhTp,
+            String emailEnsCours, String emailEnsTd, String emailEnsTp) {
+        this.idModule = idModule;
+        this.name = name;
+        this.credit = credit;
+        this.coefficient = coefficient;
+        this.vhCours = vhCours;
+        this.vhTd = vhTd;
+        this.vhTp = vhTp;
+        this.emailEnsCours = emailEnsCours;
+        this.emailEnsTd = emailEnsTd;
+        this.emailEnsTp = emailEnsTp;
+    }
 
     public Module() {
     }
 
-    public Module(long id, String name, int credit, int coefficient, int vh_cours, int vh_td,
-     int vh_tp , String email_ens_cours, String email_ens_td, String email_ens_tp){
-        super();
-        this.idModule = id;
-        this.name = name;
-        this.credit = credit;
-        this.coefficient = coefficient;
-        this.vh_cours = vh_cours;
-        this.vh_td = vh_td;
-        this.vh_tp = vh_tp;
-        this.email_ens_cours = email_ens_cours;
-        this.email_ens_td = email_ens_td;
-        this.email_ens_tp = email_ens_tp;
-    }
-
-    public long getIdModule() {
-        return idModule;
-    }
-
-    public void setIdModule(long idModule) {
-        this.idModule = idModule;
-    }
-
+    
+    
     
 }
