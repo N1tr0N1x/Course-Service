@@ -41,4 +41,23 @@ public class CourseService {
 	public List<Module> getModulesByEmailTp(String email) {
 		return repo.findAllByEmailEnsTp(email);
 	}
+	public List<File> listAllFiles() {
+		return repo1.findAll();
+	}
+	
+	public File saveFile(File file) {
+		repo1.save(file);
+		return file;
+	}
+	
+	public File getFile(long id) {
+		return repo1.findById(id).get();
+	}
+	
+	public void deleteFile(long id) {
+		repo1.deleteById(id);
+	}
+	public List<File> getFilesByEmailTp(Long moduleID) {
+		return repo1.findAllByModuleID(moduleID);
+	}
 }
