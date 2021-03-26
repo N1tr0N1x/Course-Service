@@ -5,13 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.eler.ms.course.CourseService.Model.MyFile;
 import com.eler.ms.course.CourseService.Model.Module;
+import com.eler.ms.course.CourseService.Repository.FileRepository;
 import com.eler.ms.course.CourseService.Repository.ModuleRepository;
 @Service
 public class CourseService {
 
 	@Autowired
 	private ModuleRepository repo;
+
+	@Autowired
+	private FileRepository repo1;
 	
 	public List<Module> listAll() {
 		return repo.findAll();
@@ -41,23 +46,23 @@ public class CourseService {
 	public List<Module> getModulesByEmailTp(String email) {
 		return repo.findAllByEmailEnsTp(email);
 	}
-	public List<File> listAllFiles() {
+	public List<MyFile> listAllFiles() {
 		return repo1.findAll();
 	}
 	
-	public File saveFile(File file) {
+	public MyFile saveFile(MyFile file) {
 		repo1.save(file);
 		return file;
 	}
 	
-	public File getFile(long id) {
+	public MyFile getFile(long id) {
 		return repo1.findById(id).get();
 	}
 	
 	public void deleteFile(long id) {
 		repo1.deleteById(id);
 	}
-	public List<File> getFilesByEmailTp(Long moduleID) {
+	public List<MyFile> getFilesByModuleId(Long moduleID) {
 		return repo1.findAllByModuleID(moduleID);
 	}
 }

@@ -1,6 +1,7 @@
 package com.eler.ms.course.CourseService.Controller;
 import java.util.*;
 import com.google.gson.*;
+import com.eler.ms.course.CourseService.Model.MyFile;
 import com.eler.ms.course.CourseService.Model.Module;
 import com.eler.ms.course.CourseService.Service.CourseService;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -68,6 +69,18 @@ public class CourseController {
     public String getModulesByEmailTp(@PathVariable("email") String email) {
         List<Module> modules = course.getModulesByEmailTp(email);
         String json = new Gson().toJson(modules);
+        return json;
+    }
+
+    @PostMapping("/save_file")
+    public void saveFile(@RequestBody MyFile file) {
+        course.saveFile(file);
+    }
+
+    @GetMapping("/get_files_by_module_id/{moduleId}")
+    public String getFilesByModuleId(@PathVariable("moduleId") long moduleId) {
+        List<MyFile> files = course.getFilesByModuleId(moduleId);
+        String json = new Gson().toJson(files);
         return json;
     }
 }
